@@ -1,0 +1,168 @@
+/* FarmSpins geo-block page (CORE-674). Static page hosted on GitHub Pages and
+   iframed by the Cloudflare block rules for farmspins.com. Same structure as the
+   VegasBuilder page, recoloured to the FarmSpins palette (dark green, gold, sprout green). */
+
+:root {
+  --green-deep: #1e2c16;
+  --green-dark: #16210f;
+  --green-field: #2c4420;
+  --green-sprout: #15e36e;
+  --gold: #f0b93e;
+  --gold-light: #ffd27a;
+  --cream: #f6f1dc;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  color: var(--cream);
+  background: var(--green-dark);
+  font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+}
+
+.geo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(240, 185, 62, 0.18) 0%, rgba(30, 44, 22, 0) 55%),
+    linear-gradient(180deg, var(--green-deep) 0%, var(--green-dark) 100%);
+}
+
+/* ploughed-field stripes along the bottom — pure CSS so the page has no image dependencies */
+.geo__field {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -12vh;
+  height: 42vh;
+  background:
+    repeating-linear-gradient(
+      172deg,
+      var(--green-field) 0 18px,
+      rgba(44, 68, 32, 0.55) 18px 36px
+    );
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.geo__field::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 33, 15, 0.1) 0%, rgba(22, 33, 15, 0.85) 100%);
+}
+
+.geo__card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  max-width: 520px;
+  padding: 36px 28px 28px;
+  text-align: center;
+  border: 1px solid rgba(240, 185, 62, 0.35);
+  border-radius: 20px;
+  background: rgba(30, 44, 22, 0.88);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.geo__logo { height: 40px; width: auto; }
+
+.geo__title {
+  margin: 0;
+  font-family: 'Lilita One', 'Nunito', sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4.2vw, 40px);
+  line-height: 1.05;
+  color: var(--gold);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.geo__states {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.geo__states-lead { margin: 0; color: var(--cream); }
+
+.geo__states-list {
+  margin: 0;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.geo__support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 18px 16px;
+  border-radius: 12px;
+  background: rgba(22, 33, 15, 0.75);
+}
+
+.geo__support-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--cream);
+}
+
+.geo__btns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 18px;
+  border: 2px solid transparent;
+  border-radius: 100px;
+  font-family: 'Lilita One', 'Nunito', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: var(--green-dark);
+}
+.btn--primary:hover { background: var(--gold-light); }
+
+.btn--secondary {
+  background: transparent;
+  color: var(--green-sprout);
+  border-color: var(--green-sprout);
+}
+.btn--secondary:hover { background: rgba(21, 227, 110, 0.12); }
+
+@media (max-width: 480px) {
+  .geo { padding: 24px 12px; }
+  .geo__card { padding: 28px 18px 20px; gap: 22px; }
+  .geo__btns { flex-direction: column; }
+}

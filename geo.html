@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>FarmSpins</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="geo">
+    <div class="geo__field" aria-hidden="true"></div>
+
+    <main class="geo__card">
+      <img class="geo__logo" src="images/logo.svg" alt="FarmSpins" width="176" height="40" />
+
+      <h1 class="geo__title">Looks like FarmSpins hasn't reached your fields yet.</h1>
+
+      <div class="geo__states">
+        <p class="geo__states-lead">
+          FarmSpins is currently available only in eligible U.S. states. It isn't available in your
+          current location, which includes the following states:
+        </p>
+        <!-- Excluded states — keep in sync with the Cloudflare block rule for farmspins.com. -->
+        <p class="geo__states-list">Connecticut, Idaho, Montana, Nevada, Washington, and the U.S. territories</p>
+      </div>
+
+      <div class="geo__support">
+        <p class="geo__support-text">
+          Think you're in an eligible location and got this message by mistake? Reach out to our
+          support team using one of the options below. We're always happy to help!
+        </p>
+        <div class="geo__btns">
+          <a class="btn btn--primary" href="mailto:support@farmspins.com">E-Mail</a>
+          <a class="btn btn--secondary" href="#" id="live-chat-btn">Live Chat</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // The "Live Chat" button asks the parent frame (the Cloudflare block page, which boots
+    // Comm100) to open live chat. No-op when the page is opened standalone.
+    document.addEventListener('DOMContentLoaded', function () {
+      var liveChat = document.getElementById('live-chat-btn');
+      if (!liveChat) return;
+      liveChat.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage('openLiveChat', '*');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
